@@ -11,17 +11,6 @@ use pocketmine\plugin\PluginBase;
 
 final class Loader extends PluginBase{
 
-	protected function onEnable() : void{
-		static $send = false;
-		SimplePacketHandler::createInterceptor($this)
-			->interceptIncoming(static function(ContainerClosePacket $packet, NetworkSession $session) use(&$send) : bool{
-				$send = true;
-				$session->sendDataPacket($packet);
-				$send = false;
-				return true;
-			})
-			->interceptOutgoing(static function(ContainerClosePacket $packet, NetworkSession $session) use(&$send) : bool{
-				return $send;
-			});
-	}
+	public function onEnable() : void{
+		$this->getLogger()->info("This Plugin Don't Need!");
 }
